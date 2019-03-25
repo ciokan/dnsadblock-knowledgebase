@@ -5,6 +5,8 @@ tags:
   - dynamic
   - ip
   - dns
+  - howto
+  - guide
 authors: Romeo Mihalcea
 categories: Setup
 meta:
