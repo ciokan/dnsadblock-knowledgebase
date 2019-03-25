@@ -24,7 +24,11 @@ excerpt: >-
   Learn how to unblock it.
 ---
 Some of our users reported that YouTube app stops working after enabling our DNS servers. In the browser YouTube has no problem playing and functioning but the app, on some devices, stops working entirely as it fails to ping back to it's motherbase.
+
+
 On our tests with chrome, YouTube apps and other Google products we noticed that their devices and software are desperate to contact a specific address: `clients1.google.com`. So desperate that it did so no less that 40,000 times in the first day alone after we launched our service for internal testing. Chrome was pinging back over and over again so badly that I made the switch to Firefox after seeing this. We initially thought it must be a software bug on our part but no...`clients1.google.com` is the supreme leader that wants to be aware of everything that takes place. Jokes aside, by the way it looks, the endpoint probably provides session information regarding the currently logged in member.
+
+
 Unfortunately for us, the YouTube app refuses to function on some devices due to this global rule that we have implemented under the `Tracking` category. I don't know about you but I can't be on the **www** without YouTube. To fix it, just add a new **Whitelist** rule overwriting our global block. 
 
 
