@@ -11,7 +11,7 @@ meta:
   description: Learn How to make YouTube app work after adding our DNS
   keywords: 'YouTube, app, dns unblock'
 isPage: false
-showAuthor: true
+showAuthor: false
 isFeatured: false
 pinSidebar:
   categories: Guides
