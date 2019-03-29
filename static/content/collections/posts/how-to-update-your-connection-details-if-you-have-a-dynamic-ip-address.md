@@ -13,7 +13,7 @@ meta:
   description: Learn how to update your connection details if you have a dynamic ip address
   keywords: 'setup, dynamic ip, dns server'
 isPage: false
-showAuthor: true
+showAuthor: false
 isFeatured: true
 pinSidebar:
   categories: Setup
