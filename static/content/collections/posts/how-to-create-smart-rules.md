@@ -13,7 +13,7 @@ meta:
   description: Learn how to create better filters for your DNS rules
   keywords: 'dns, filter, ad block, howto, block, create dns filter'
 isPage: false
-showAuthor: true
+showAuthor: false
 isFeatured: false
 pinSidebar:
   categories: Setup
