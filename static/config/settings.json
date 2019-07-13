@@ -1,18 +1,10 @@
 {
-<<<<<<< HEAD
   "name": "DnsAdBlock",
   "title": "Knowledgebase - DnsAdBlock",
   "excerpt": "Knowledgebase for DnsAdBlock",
   "baseUrl": "https://knowledgebase.dnsadblock.com",
-=======
-  "name": "qards",
-  "title": "Qards - the blogging platform for professionals",
-  "excerpt": "Qards is a serverless blogging platform for professionals powered by Gatbsy and Netlify CMS",
-  "baseUrl": "https://affectionate-hamilton-12254a.netlify.com",
->>>>>>> 9f44284a6a0e8ed040094519f00ff2d4b3302080
   "performanceMode": false,
   "typography": {
-<<<<<<< HEAD
     "bodyFontFamily": "Roboto",
     "headerFontFamily": "Roboto",
     "baseLineHeight": 1,
@@ -22,12 +14,3 @@
   "logo": "/images/uploads/logo.png",
   "socialShareImg": "/images/uploads/rules.svg"
 }
-=======
-    "fontSize": "14px",
-    "bodyFontFamily": "Arial",
-    "baseLineHeight": 1,
-    "headerFontFamily": "Arial"
-  },
-  "fallbackFont": "helvetica"
-}
->>>>>>> 9f44284a6a0e8ed040094519f00ff2d4b3302080
