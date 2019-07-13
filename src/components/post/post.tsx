@@ -207,7 +207,7 @@ export default class Post extends React.Component<Props, State> {
 	renderSection(part: string) {
 		//	If we're in preview mode we need to load the markdown ourselves
 		//	In normal mode, we use the HTML from our props
-		const {preview} = this.props;
+		const {preview, post} = this.props;
 
 		return preview ? <div className="paragraphs">
 			<MarkdownRender md={part}/>
@@ -287,6 +287,7 @@ export default class Post extends React.Component<Props, State> {
 		//	Normalize some items by being prepared for preview (netlify cms) and production
 		const title = post ? post.frontmatter.title : (previewData ? previewData.title : '');
 		const created_at = post ? post.frontmatter.created_at : (previewData ? previewData.created_at : '');
+		const updated_at = post ? post.parent.modifiedTime : '';
 		const excerpt = post ? post.frontmatter.excerpt : (previewData ? previewData.excerpt : '');
 
 		let hero;
@@ -302,10 +303,15 @@ export default class Post extends React.Component<Props, State> {
 			};
 		}
 
+		let created = `Created: ${created_at.toString()}`;
+		if (updated_at && updated_at != '' && updated_at != created_at) {
+			created = `Updated: ${updated_at.toString()}`;
+		}
+
 		return (
 			<Article>
 				{title && <Title className={'qards-post-title'}>{title}</Title>}
-				{created_at && <Date className={'qards-post-date'}>{created_at.toString()}</Date>}
+				<Date className={'qards-post-date'}>{created}</Date>
 				{hero && <Hero className={'qards-post-hero'}><QardImageContent lightbox={true} {...hero}/></Hero>}
 				{excerpt && <Excerpt className={'qards-post-excerpt'}>{excerpt}</Excerpt>}
 

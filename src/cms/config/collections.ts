@@ -1,5 +1,3 @@
-import PostsSettings from '../../../static/config/posts.json';
-
 export const settingsCollection = {
 	name  : 'settings',
 	label : 'Settings',
@@ -293,34 +291,49 @@ export const settingsCollection = {
 			name  : 'frontLimit',
 			widget: 'number',
 		}, {
-			label  : 'Show post scroll progress?',
-			name   : 'progressShow',
-			widget : 'boolean',
-			hint   : `When scrolling a post, a progress bar 
+			label   : 'Show post scroll progress?',
+			name    : 'progressShow',
+			widget  : 'boolean',
+			hint    : `When scrolling a post, a progress bar 
 					indicating the current position in page will be 
 					shown on the bottom of the page`,
-			default: true,
+			default : true,
+			required: false,
 		}, {
-			label  : 'Show table of contents?',
-			name   : 'tocShow',
-			widget : 'boolean',
-			default: true,
+			label   : 'Show table of contents?',
+			name    : 'tocShow',
+			widget  : 'boolean',
+			default : true,
+			required: false,
 		}, {
-			label  : 'Show social media share buttons?',
-			name   : 'socialShow',
-			widget : 'boolean',
-			default: true,
+			label   : 'Override author with metabox?',
+			name    : 'authorOverrideMetabox',
+			widget  : 'boolean',
+			default : false,
+			required: false,
+			hint    : `If true, the posts author section will be overriden with
+			information pulled from the general settings. The avatar will be the
+			site logo, name will be site/blog name, description will be site
+			description and so on.`,
 		}, {
-			label  : 'Show subscribe box?',
-			name   : 'subscribeShow',
-			widget : 'boolean',
-			default: true,
+			label   : 'Show social media share buttons?',
+			name    : 'socialShow',
+			widget  : 'boolean',
+			default : true,
+			required: false,
 		}, {
-			label  : 'Show excerpts?',
-			name   : 'showExcerpts',
-			widget : 'boolean',
-			default: true,
-			hint   : `If true, the post excerpts will be shown when
+			label   : 'Show subscribe box?',
+			name    : 'subscribeShow',
+			widget  : 'boolean',
+			default : true,
+			required: false,
+		}, {
+			label   : 'Show excerpts?',
+			name    : 'showExcerpts',
+			widget  : 'boolean',
+			default : true,
+			required: false,
+			hint    : `If true, the post excerpts will be shown when
 			displaying post results (cards)`,
 		}, {
 			label   : 'Slug structure',
@@ -429,6 +442,15 @@ export const settingsCollection = {
 		}, {
 			label : 'RSS Feed',
 			name  : 'rssFeed',
+			widget: 'object',
+			fields: [{
+				label : 'Enable',
+				name  : 'enable',
+				widget: 'boolean',
+			}],
+		}, {
+			label : 'Sitemap',
+			name  : 'sitemap',
 			widget: 'object',
 			fields: [{
 				label : 'Enable',
@@ -593,6 +615,14 @@ export const postsCollection = {
 		required: false,
 		default : false,
 	}, {
+		label   : 'Do follow links?',
+		name    : 'doFollowLinks',
+		widget  : 'boolean',
+		required: false,
+		default : false,
+		hint: `By default all links have a nofollow rel. You can disable that
+		for this post with this setting.`
+	}, {
 		label   : 'Show author?',
 		name    : 'showAuthor',
 		widget  : 'boolean',
@@ -627,7 +657,7 @@ export const postsCollection = {
 			searchFields : ['title', 'excerpt'],
 			valueField   : 'title',
 			displayFields: ['title'],
-			required     : true,
+			required     : false,
 			hint         : `Select the category where this post should appear in the sidebar. 
 			WARNING: A current limitation in the CMS does not allow selecting multiple categories`,
 		}],

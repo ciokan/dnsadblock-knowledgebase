@@ -40,7 +40,7 @@ export const Date = styled.span`
 	font-weight: 200;
 	color: ${theme.color(['lightText'])};
 	text-transform: uppercase;
-	margin: 0px;
+	margin: 0;
 `;
 
 export const Article = styled.article`
@@ -72,6 +72,8 @@ export const Article = styled.article`
 	}
 	
 	.paragraphs {
+		color: ${tinycolor2(theme.color(['text'])).lighten(25).toString()};
+
 		pre, code {
 			font-size: 1rem;
 			padding: 0 4px;

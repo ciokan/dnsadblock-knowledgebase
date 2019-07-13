@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import remark from 'remark';
-import remarkReact from 'remark-react';
+
+import {markdownRenderPost} from '../../utils/helpers';
 
 export interface Props {
 	md: string;
@@ -14,7 +14,7 @@ class MarkdownRender extends Component<Props, any> {
 
 		// @ts-ignore
 		return <Wrapper {...props}>
-			{remark().use(remarkReact).processSync(md).contents}
+			{markdownRenderPost(md)}
 		</Wrapper>;
 	}
 }

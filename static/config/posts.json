@@ -4,7 +4,11 @@
   "tocShow": true,
   "socialShow": true,
   "subscribeShow": true,
+<<<<<<< HEAD
   "showExcerpts": true,
+=======
+  "authorOverrideMetabox": true,
+>>>>>>> 9f44284a6a0e8ed040094519f00ff2d4b3302080
   "slugStructure": "{{slug}}",
   "pathPrefix": "/"
 }

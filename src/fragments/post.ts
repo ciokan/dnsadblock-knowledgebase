@@ -12,6 +12,7 @@ export interface PostType {
 	frontmatter: {
 		isPage: boolean;
 		isFeatured: boolean;
+		doFollowLinks?: boolean;
 		showAuthor: boolean;
 		title: string;
 		excerpt: string;
@@ -19,6 +20,10 @@ export interface PostType {
 		tags: string[];
 		hero: PageHeroType;
 		meta: PageMetaType;
+	}
+
+	parent: {
+		modifiedTime: string;
 	}
 
 	references?: PostType[];
@@ -68,6 +73,12 @@ export const _ = graphql`
 		categories {
 			...categoryFragment
 		}
+		
+		parent {
+			... on File {
+				modifiedTime(formatString: "MMMM DD, YYYY")
+			}
+        }
 
 		frontmatter{
 			title
@@ -75,6 +86,7 @@ export const _ = graphql`
 			created_at(formatString: "MMMM DD, YYYY")
 			tags
 			showAuthor
+			doFollowLinks
 			isPage
 			isFeatured
 			

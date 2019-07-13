@@ -22,8 +22,28 @@ describe('Test Backend', () => {
 		cy.setNetlifySiteUrl();
 	});
 
+	before(() => {
+		//	move the testing images to the uploads folder so we can
+		//	preview gallery items and other images without them having
+		//	to be present inside the uploads folder in production
+
+		// @ts-ignore
+		cy.copyTestingImages();
+	});
+
 	after(() => {
-		cy.visit('/', {failOnStatusCode: false});
+		// @ts-ignore
+		cy.removeTestingImages();
+
+		//	we need to inhibit the event sent from Netlify-cms
+		//	telling us that "Changaes you made will not be saved"
+		//	before leaving the page
+		cy.window().then((win) => {
+			win.onbeforeunload = null;
+
+			// @ts-ignore
+			cy.visit('/', {failOnStatusCode: false});
+		});
 	});
 
 	const gotoAdmin = () => {
@@ -84,7 +104,7 @@ describe('Test Backend', () => {
 	const getPreviewBody = (): Promise<any> => {
 		// @ts-ignore
 		return new Cypress.Promise((resolve: any) => {
-			cy.get(`iframe`).then(($iframe) => {
+			cy.get(`iframe[class*="PreviewPaneFrame"]`).then(($iframe) => {
 				resolve($iframe.contents().find('body')[0]);
 			});
 		});
@@ -172,16 +192,16 @@ describe('Test Backend', () => {
 						widget: 'qards-gallery',
 						config: encodeWidgetDataObject({
 							'items': [{
-								'src'    : '/images/uploads/mike-dorner-173502-unsplash.jpg',
+								'src'    : '/images/uploads/test-1.jpg',
 								'alt'    : 'Banana for scale',
 								'caption': 'This is a **caption**. It supports _markdown_',
 							}, {
-								'src': '/images/uploads/patrick-fore-557736-unsplash.jpg',
+								'src': '/images/uploads/test-2.jpg',
 								'alt': 'Cool kid',
 							}, {
-								'src': '/images/uploads/marko-blazevic-219788-unsplash.jpg',
-								'alt': 'Cat tax',
-							}, {'src': '/images/uploads/valerie-elash-690673-unsplash.jpg', 'alt': 'Awesome dog'}],
+								'src': '/images/uploads/test-3.jpg', 'alt': 'Cat tax',
+							},
+								{'src': '/images/uploads/test-1.jpg', 'alt': 'Awesome dog'}],
 						}),
 					}), true);
 

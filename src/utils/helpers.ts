@@ -6,6 +6,8 @@ import {CardHeaderType} from '../components/qard/header';
 import {decodeWidgetDataObject} from '../cms/utils';
 import Immutable from 'immutable';
 import {format} from 'date-fns';
+import remark from 'remark';
+import remarkReact from 'remark-react';
 
 let settingsConfig = require('../../static/config/settings.json');
 let postsConfig = require('../../static/config/posts.json');
@@ -160,6 +162,10 @@ export function extractNodesFromEdges(edges: any, path: string = ''): any {
 	return res;
 }
 
+export function markdownRenderPost(md: string): string {
+	return remark().use(remarkReact).processSync(md).contents;
+}
+
 interface rTimeResponse {
 	text?: string;
 	time?: number;
@@ -173,6 +179,13 @@ export function readingTime(markdown: string): rTimeResponse {
 	//	make sure there's at least one latin char in your string otherwise we get
 	//	a funny error from our estimator which complains with a `Data provided is invalid`
 	return rTime(`a${text}`);
+}
+
+export function mdWithoutEncodedComponents(post: PostType): string {
+	return post.md.split('\n')
+		.filter(line => !lineRepresentsEncodedComponent(line))
+		.join(' ')
+		.replace(/\s\s+/g, ' ');
 }
 
 export function getConfig(path: string[]): string {

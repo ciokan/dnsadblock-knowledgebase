@@ -48,7 +48,7 @@ const plugins = [
 		resolve: `gatsby-source-filesystem`,
 		options: {
 			name: `dummy-posts`,
-			path: `${__dirname}/src/content/collections/posts`,
+			path: `${__dirname}/src/dummy-content/collections/posts`,
 		},
 	},
 	{
@@ -62,7 +62,7 @@ const plugins = [
 		resolve: `gatsby-source-filesystem`,
 		options: {
 			name: `dummy-authors`,
-			path: `${__dirname}/src/content/collections/authors`,
+			path: `${__dirname}/src/dummy-content/collections/authors`,
 		},
 	},
 	{
@@ -76,7 +76,7 @@ const plugins = [
 		resolve: `gatsby-source-filesystem`,
 		options: {
 			name: `dummy-categories`,
-			path: `${__dirname}/src/content/collections/categories`,
+			path: `${__dirname}/src/dummy-content/collections/categories`,
 		},
 	},
 	{
@@ -89,8 +89,15 @@ const plugins = [
 	{
 		resolve: 'gatsby-source-filesystem',
 		options: {
+			path: `${__dirname}/src/dummy-content/images/uploads`,
+			name: 'dummy-images',
+		},
+	},
+	{
+		resolve: 'gatsby-source-filesystem',
+		options: {
 			path: `${__dirname}/src/app/static`,
-			name: 'app_images',
+			name: 'app-images',
 		},
 	},
 	`gatsby-plugin-offline`,
@@ -130,6 +137,14 @@ const plugins = [
 						maxWidth       : 2100,
 						backgroundColor: 'transparent',
 					},
+				},
+				{
+					resolve: 'qards-transformer-external-links',
+					options: {
+						target        : '_blank',
+						rel           : ['nofollow', 'noopener', 'noreferrer'],
+						bypassNofollow: ['qards.io', 'typely.com'],
+					},
 				}],
 		},
 	},
@@ -143,7 +158,7 @@ const plugins = [
 			developerURL  : null,
 			dir           : 'auto',
 			lang          : 'en-US',
-			background    : 'transparent',
+			background    : configTheme.colors.accent.background || '#3ea38f',
 			theme_color   : configTheme.colors.accent.background || '#3ea38f',
 			display       : 'standalone',
 			orientation   : 'any',
@@ -168,18 +183,6 @@ const plugins = [
 		resolve: `gatsby-plugin-page-creator`,
 		options: {
 			path: `${__dirname}/src/app/pages`,
-		},
-	},
-	{
-		resolve: `fix-external-links`,
-		options: {
-			attributes: {
-				nofollow: {
-					skipMatch: [
-						/** regex that will be matched against external link */
-					],
-				},
-			},
 		},
 	},
 	{

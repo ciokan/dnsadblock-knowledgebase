@@ -7,5 +7,6 @@
   "pluginsFile": "./testing/cypress/plugins/index.js",
   "screenshotsFolder": "./testing/cypress/screenshots",
   "videosFolder": "./testing/cypress/videos",
-  "supportFile": "./testing/cypress/support/index.ts"
+  "supportFile": "./testing/cypress/support/index.ts",
+  "pageLoadTimeout": 200000
 }
